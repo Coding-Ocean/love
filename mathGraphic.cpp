@@ -8,14 +8,11 @@ static float Ox, Oy;
 //1とする大きさ
 static float Scl;
 
-void mathSetAxis(float ox, float oy, float scl)
+void mathAxis(float ox, float oy, float scl)
 {
 	Ox = ox;
 	Oy = oy;
 	Scl = scl;
-}
-void mathAxis()
-{
 	//ｘ、ｙ軸
 	line(0, Oy, baseWidth(), Oy);
 	line(Ox, 0, Ox, baseHeight());
@@ -58,6 +55,15 @@ void mathCircle(float x, float y, float diameter)
 	y = Oy - Scl * y;
 	diameter *= Scl;
 	circle(x, y, diameter);
+}
+void mathRect(float x, float y, float w, float h, float rad)
+{
+	//スクリーン座標に変換
+	x = Ox + Scl * x;
+	y = Oy - Scl * y;
+	w *= Scl;
+	h *= Scl;
+	rect(x, y, w, h, rad);
 }
 void mathLine(float sx, float sy, float ex, float ey)
 {

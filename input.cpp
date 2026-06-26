@@ -28,18 +28,39 @@ void getInputState()
 	POINT pt;
 	GetCursorPos(&pt);
 	ScreenToClient(HWnd, &pt);
-	short x = static_cast<short>(pt.x * baseWidth() / clientWidth());
-	short y = static_cast<short>(pt.y * baseHeight() / clientHeight());
-	short w = static_cast<short>(baseWidth());
-	short h = static_cast<short>(baseHeight());
-	if (x < 0)
-		x = 0;
-	else if (x > w)
-		x = w;
-	if (y < 0)
-		y = 0;
-	else if (y > h)
-		y = h;
+	//short x = static_cast<short>(pt.x * baseWidth() / clientWidth());
+	//short y = static_cast<short>(pt.y * baseHeight() / clientHeight());
+	//short w = static_cast<short>(baseWidth());
+	//short h = static_cast<short>(baseHeight());
+	//if (x < 0)
+	//	x = 0;
+	//else if (x > w)
+	//	x = w;
+	//if (y < 0)
+	//	y = 0;
+	//else if (y > h)
+	//	y = h;
+	// ウィンドウサイズ変更対応
+	// baseWidth,baseHeihgt　ユーザー指定した大きさ
+	short x, y;
+	float aspect = baseWidth() / baseHeight();
+	if (clientWidth() == baseWidth() && clientHeight() == baseHeight()) {
+		x = (float)pt.x;
+		y = (float)pt.y;
+	}
+	else if (clientWidth() / clientHeight() >= aspect) {
+		float width_ = clientHeight() * aspect;
+		float left = (clientWidth() - width_) / 2.0f;
+		x = (pt.x - left) / clientHeight() * baseHeight();
+		y = pt.y / clientHeight() * baseHeight();
+	}
+	else {
+		float height_ = clientWidth() / aspect;
+		float top = (clientHeight() - height_) / 2.0f;
+		x = pt.x / clientWidth() * baseWidth();
+		y = (pt.y - top) / clientWidth() * baseWidth();
+	}
+
 	InputState[Now][MOUSE_X] = x;
 	InputState[Now][MOUSE_Y] = y;
 }
@@ -109,14 +130,8 @@ void setMousePos(float x, float y)
 void createInput()
 {
 	HWnd = hwnd();
-	hideCursor();
-	//ウィンドウ中央にマウスをセット
-	//RECT rect;
-	//GetClientRect(HWnd, &rect);
-	//setMousePos(rect.right / 2.0f, rect.bottom / 2.0f);
 }
 void destroyInput()
 {
-	showCursor();
 }
 

@@ -36,25 +36,21 @@ void begin()
 
 void end()
 {
-	cursor();
 	endMsaaRender();
 }
 
-void info()
+void winInfo()
 {
-	print("w:%d h:%d", (int)width, (int)height);
-	print("mx:%d my:%d", (int)mouseX, (int)mouseY);
-	print("%.3f", delta);
+	print("width:%.f height:%.f", width, height);
+	print("mouseX:%.f mouseY:%.f", mouseX, mouseY);
+	print("delta:%.3f", delta);
 }
 
-void debugPrint()
+void descInfo()
 {
 	print("numDescriptors:%d", numConstants() + numLoadTextures() + numFontTextures());
 	print("numConstants:%d", numConstants());
 	print("numLoadTextures:%d", numLoadTextures());
 	print("numFontTextures:%d", numFontTextures());
-	print("deltaTime:%.3f", delta);
-	print("mouseX:%d", (int)mouseX);
-	print("mouseY:%d", (int)mouseY);
 }
 

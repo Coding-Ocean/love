@@ -22,6 +22,6 @@ void window(
 
 void begin();
 void end();
-void info();
-void debugPrint();
+void winInfo();
+void descInfo();
 

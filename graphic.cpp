@@ -517,7 +517,7 @@ void InitPrintPosY();
 
 //パブリックな関数---------------------------------------------------------------
 //システム系
-int CursorImg = 0;
+//int CursorImg = 0;
 void createGraphic(int numDescriptors)
 {
 	CreateDevice();
@@ -533,7 +533,7 @@ void createGraphic(int numDescriptors)
 	CreateCircleTexcoordBuffers();
 	CreateOrthoProj();
 	CreateWhiteTexture();
-	CursorImg = loadImage("assets/cursor.png");
+	//CursorImg = loadImage("assets/cursor.png");
 }
 void waitGPU()
 {
@@ -1259,7 +1259,11 @@ void DrawImage(UINT cbvIdx, UINT tbvIdx, UINT texcoordIdx=0)
 float IMGR = 1, IMGG = 1, IMGB = 1, IMGA = 1;
 void imageColor(float r, float g, float b, float a)
 {
-	IMGR = r; IMGG = g; IMGB = b; IMGA = a;
+	IMGR = r / 255.f; IMGG = g / 255.f; IMGB = b / 255.f; IMGA = a / 255.f;
+}
+void imageColor(const COLOR& c, float a)
+{
+	IMGR = c.r / 255.f; IMGG = c.g / 255.f; IMGB = c.b / 255.f; IMGA = a / 255.f;
 }
 //矩形描画モード
 constexpr int CENTER = 0;
@@ -1335,7 +1339,7 @@ void CreateWhiteTexture()//createDescriptorHeapから呼び出される
 float FillR = 1, FillG = 1, FillB = 1, FillA = 1;
 void fill(float r, float g, float b, float a)
 {
-	FillR = r; FillG = g; FillB = b; FillA = a;
+	FillR = r/255.f; FillG = g/255.f; FillB = b/255.f; FillA = a/255.f;
 }
 void noFill()
 {
@@ -1346,7 +1350,7 @@ void noFill()
 float StrokeR = 0, StrokeG = 0, StrokeB = 0, StrokeA = 1;
 void stroke(float r, float g, float b, float a)
 {
-	StrokeR = r; StrokeG = g; StrokeB = b; StrokeA = a;
+	StrokeR = r/255.f; StrokeG = g/255.f; StrokeB = b/255.f; StrokeA = a/255.f;
 }
 //線の太さ
 float StrokeWeight = 1;
@@ -1360,17 +1364,17 @@ void noStroke()
 	StrokeWeight = 0;
 }
 //僕の好きな色
-extern COLOR Red{ 239 / 255.f, 87 / 255.f, 108 / 255.f };
-extern COLOR Green{ 0 / 255.f, 191 / 255.f, 160 / 255.f };
-extern COLOR Blue{ 26 / 255.f, 130 / 255.f, 161 / 255.f };
-extern COLOR Yellow{ 180 / 255.f, 180 / 255.f, 37 / 255.f };
+extern COLOR RED{ 239.f, 87.f, 108.f };
+extern COLOR GREEN{ 0.f, 191.f, 160.f };
+extern COLOR BLUE{ 26.f, 130.f, 161.f };
+extern COLOR YELLOW{ 180.f, 180.f, 37.f };
 void fill(const COLOR& c, float a)
 {
-	FillR = c.r; FillG = c.g; FillB = c.b; FillA = a;
+	FillR = c.r/255.f; FillG = c.g/255.f; FillB = c.b/255.f; FillA = a/255.f;
 }
 void stroke(const COLOR& c, float a)
 {
-	StrokeR = c.r; StrokeG = c.g; StrokeB = c.b; StrokeA = a;
+	StrokeR = c.r/255.f; StrokeG = c.g / 255.f; StrokeB = c.b / 255.f; StrokeA = a / 255.f;
 }
 
 //点
@@ -1651,16 +1655,16 @@ void circle(float px, float py, float diameter)
 float FONTR = 0.5f, FONTG = 0.5f, FONTB = 0.5f, FONTA = 1;
 void fontColor(float r, float g, float b, float a)
 {
-	FONTR = r; FONTG = g; FONTB = b; FONTA = a;
+	FONTR = r / 255.f; FONTG = g / 255.f; FONTB = b / 255.f; FONTA = a / 255.f;
 }
 void fontColor(const COLOR& c,float a)
 {
-	FONTR = c.r; FONTG = c.g; FONTB = c.b; FONTA = a;
+	FONTR = c.r / 255.f; FONTG = c.g / 255.f; FONTB = c.b / 255.f; FONTA = a / 255.f;
 }
 float FONT_SHADOW_R = 0, FONT_SHADOW_G = 0, FONT_SHADOW_B = 0, FONT_SHADOW_A = 0;
 void fontShadowColor(float r, float g, float b, float a)
 {
-	FONT_SHADOW_R = r, FONT_SHADOW_G = g, FONT_SHADOW_B = b, FONT_SHADOW_A = a;
+	FONT_SHADOW_R = r / 255.f, FONT_SHADOW_G = g / 255.f, FONT_SHADOW_B = b / 255.f, FONT_SHADOW_A = a / 255.f;
 }
 
 //現在描画中のフォントフェイス構造体
@@ -1912,10 +1916,4 @@ USER_FONT::USER_FONT(const char* filename)
 }
 USER_FONT::~USER_FONT() {
 	RemoveFontResourceExA(Filename.c_str(), FR_PRIVATE, 0);
-}
-
-void cursor()
-{
-	rectModeCorner();
-	image(CursorImg, mouseX, mouseY);
 }
