@@ -13,6 +13,7 @@ void mathAxis(float ox, float oy, float scl)
 	Ox = ox;
 	Oy = oy;
 	Scl = scl;
+
 	//ｘ、ｙ軸
 	line(0, Oy, baseWidth(), Oy);
 	line(Ox, 0, Ox, baseHeight());
@@ -41,6 +42,14 @@ void mathAxis(float ox, float oy, float scl)
 		line(Ox - l, y, Ox + l, y);
 	}
 }
+//mathAxisを表示しない場合はこれをつかう
+void setMathAxis(float ox, float oy, float scl)
+{
+	Ox = ox;
+	Oy = oy;
+	Scl = scl;
+}
+
 void mathPoint(float x, float y)
 {
 	//スクリーン座標に変換

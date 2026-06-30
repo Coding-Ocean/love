@@ -7,6 +7,7 @@ void window(LPCSTR windowTitle, float baseWidth, float baseHeight,
 	createGraphic(numDescriptors);
 	createInput();
 	showWindow();
+	setFixedDeltaTime();
 	initDeltaTime();
 }
 
@@ -29,6 +30,7 @@ void winInfo()
 {
 	print("width:%.f height:%.f", width, height);
 	print("mouseX:%.f mouseY:%.f", mouseX, mouseY);
+	print("fixed_delta:%f", fixed_delta);
 	print("delta:%.3f", delta);
 }
 

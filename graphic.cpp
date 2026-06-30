@@ -1266,8 +1266,6 @@ void imageColor(const COLOR& c, float a)
 	IMGR = c.r / 255.f; IMGG = c.g / 255.f; IMGB = c.b / 255.f; IMGA = a / 255.f;
 }
 //矩形描画モード
-constexpr int CENTER = 0;
-constexpr int CORNER = 1;
 int RectMode = 0;
 void rectModeCorner()
 {
@@ -1276,6 +1274,10 @@ void rectModeCorner()
 void rectModeCenter()
 {
 	RectMode = CENTER;
+}
+void rectMode(int mode)
+{
+	RectMode = mode;
 }
 //２D用正投影行列
 XMMATRIX OrthoProj;
@@ -1368,6 +1370,8 @@ extern COLOR RED{ 239.f, 87.f, 108.f };
 extern COLOR GREEN{ 0.f, 191.f, 160.f };
 extern COLOR BLUE{ 26.f, 130.f, 161.f };
 extern COLOR YELLOW{ 180.f, 180.f, 37.f };
+extern COLOR WHITE{ 255.f, 255.f, 255.f };
+extern COLOR GRAY{ 128.f, 128.f, 128.f };
 void fill(const COLOR& c, float a)
 {
 	FillR = c.r/255.f; FillG = c.g/255.f; FillB = c.b/255.f; FillA = a/255.f;
@@ -1782,6 +1786,10 @@ FONT_TEXTURE* CreateFontTexture(DWORD key)
 }
 //フォント用rectMode
 int FontRectMode = CORNER;
+void fontRectMode(int mode)
+{
+	FontRectMode = mode;
+}
 void fontRectModeCorner()
 {
 	FontRectMode = CORNER;

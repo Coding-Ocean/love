@@ -1,4 +1,4 @@
-#pragma once
+Ôªø#pragma once
 #include<d3d12.h>
 #include<DirectXMath.h>
 #include<wrl.h>
@@ -6,22 +6,22 @@
 using namespace DirectX;
 using namespace Microsoft::WRL;
 
-//ÉVÉXÉeÉÄån
+//„Ç∑„Çπ„ÉÜ„É†Á≥ª
 void createGraphic(int numDescriptors);
 void waitGPU();
 void closeEventHandle();
-//ÉoÉbÉtÉ@ån
+//„Éê„ÉÉ„Éï„Ç°Á≥ª
 HRESULT createBuffer(UINT sizeInBytes, ComPtr<ID3D12Resource>& buffer);
 HRESULT updateBuffer(void* data, UINT sizeInBytes, ComPtr<ID3D12Resource>& buffer);
 HRESULT mapBuffer(ComPtr<ID3D12Resource>& buffer, void** mappedBuffer);
 void unmapBuffer(ComPtr<ID3D12Resource>& buffer);
 UINT alignedSize(size_t size);
-//ÉfÉBÉXÉNÉäÉvÉ^ån
+//„Éá„Ç£„Çπ„ÇØ„É™„Éó„ÇøÁ≥ª
 void createVertexBufferView(ComPtr<ID3D12Resource>& vertexBuffer, UINT sizeInBytes, UINT strideInBytes, D3D12_VERTEX_BUFFER_VIEW& vertexBufferView);
 void createIndexBufferView(ComPtr<ID3D12Resource>& indexBuffer, UINT sizeInBytes, D3D12_INDEX_BUFFER_VIEW& indexBufferView);
 UINT createConstantBufferView(ComPtr<ID3D12Resource>& constantBuffer);
 UINT createTextureBufferView(ComPtr<ID3D12Resource>& textureBuffer);
-//ï`âÊån
+//ÊèèÁîªÁ≥ª
 void clearColor(float r, float g, float b);
 void backgroundRect();
 void beginRender();
@@ -30,6 +30,9 @@ void beginMsaaRender();
 void endMsaaRender();
 
 //2D functions ----------------------------------------------------------------
+constexpr int CENTER = 0;
+constexpr int CORNER = 1;
+void rectMode(int mode);
 void rectModeCorner();
 void rectModeCenter();
 void fill(float r, float g, float b, float a = 255.f);
@@ -37,7 +40,7 @@ void noFill();
 void stroke(float r, float g, float b, float a = 255.f);
 void strokeWeight(float sw);
 void noStroke();
-extern struct COLOR RED,GREEN,BLUE,YELLOW;
+extern struct COLOR RED,GREEN,BLUE,YELLOW,WHITE,GRAY;
 void stroke(const COLOR&, float a = 255.f);
 void fill(const COLOR&, float a = 255.f);
 //image
@@ -66,6 +69,7 @@ void fontSize(int size);
 void fontColor(float r, float g, float b, float a=255.f);
 void fontColor(const COLOR& c, float a=255.f);
 void fontShadowColor(float r, float g, float b, float a);
+void fontRectMode(int mode);
 void fontRectModeCorner();
 void fontRectModeCenter();
 float text(const char* str, float x, float y);
