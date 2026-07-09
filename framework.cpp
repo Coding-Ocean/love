@@ -26,11 +26,11 @@ void end()
 	endMsaaRender();
 }
 
-void winInfo()
+void printInfo()
 {
 	print("width:%.f height:%.f", width, height);
 	print("mouseX:%.f mouseY:%.f", mouseX, mouseY);
-	print("fixed_delta:%f", fixed_delta);
+	print("fixed_delta:%f", fixedDelta);
 	print("delta:%.3f", delta);
 }
 

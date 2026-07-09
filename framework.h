@@ -21,6 +21,6 @@ void window(
 );
 void begin();
 void end();
-void winInfo();
+void printInfo();
 void descInfo();
 

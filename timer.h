@@ -1,6 +1,6 @@
 #pragma once
 #define delta deltaTime()
-#define fixed_delta fixedDeltaTime()
+#define fixedDelta fixedDeltaTime()
 
 void initDeltaTime();
 void setDeltaTime();
