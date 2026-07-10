@@ -18,28 +18,38 @@ void mathAxis(float ox, float oy, float scl)
 	line(0, Oy, baseWidth(), Oy);
 	line(Ox, 0, Ox, baseHeight());
 
-	//Œ´“_‚©‚çnumŒÂ‚Ìƒƒ‚ƒŠ‚ğ•`‚­
+	//Œ´“_‚©‚çnumŒÂ‚Ì–Ú·‚è‚ğ•`‚­
 	float l = 0.03f * Scl;
-	int num, i;
+	float fontsize = 0.06f * Scl;
+	fontRectMode(CENTER);
+	fontSize(fontsize);	int num, i;
+	//+x
 	num = int((baseWidth() - Ox) / Scl);
 	for (i = 1; i <= num; i++) {
 		float x = Ox + Scl * i;
 		line(x, Oy - l, x, Oy + l);
+		text(x, Oy + l * 2, "%d", i);
 	}
+	//-x
 	num = int(Ox / Scl);
 	for (i = 1; i <= num; i++) {
 		float x = Ox + Scl * -i;
 		line(x, Oy - l, x, Oy + l);
+		text(x - fontsize / 2, Oy + l * 2, "%d", -i);
 	}
-	num = int((baseHeight() - Oy) / Scl);
-	for (i = 1; i <= num; i++) {
-		float y = Oy + Scl * i;
-		line(Ox - l, y, Ox + l, y);
-	}
+	//+y
 	num = int(Oy / Scl);
 	for (i = 1; i <= num; i++) {
 		float y = Oy + Scl * -i;
 		line(Ox - l, y, Ox + l, y);
+		text(Ox - l * 1.5f, y, "%d", i);
+	}
+	//-y
+	num = int((baseHeight() - Oy) / Scl);
+	for (i = 1; i <= num; i++) {
+		float y = Oy + Scl * i;
+		line(Ox - l, y, Ox + l, y);
+		text(Ox - l * 1.5f - fontsize / 2, y, "%d", -i);
 	}
 }
 //mathAxis‚ğ•\¦‚µ‚È‚¢ê‡‚Í‚±‚ê‚ğ‚Â‚©‚¤

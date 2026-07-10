@@ -30,7 +30,7 @@ void printInfo()
 {
 	print("width:%.f height:%.f", width, height);
 	print("mouseX:%.f mouseY:%.f", mouseX, mouseY);
-	print("fixed_delta:%f", fixedDelta);
+	print("fixedDelta:%f", fixedDelta);
 	print("delta:%.3f", delta);
 }
 
