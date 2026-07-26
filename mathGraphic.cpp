@@ -22,7 +22,8 @@ void mathAxis(float ox, float oy, float scl)
 	float l = 0.03f * Scl;
 	float fontsize = 0.06f * Scl;
 	fontRectMode(CENTER);
-	fontSize(fontsize);	int num, i;
+	fontSize((int)fontsize);	
+	int num, i;
 	//+x
 	num = int((baseWidth() - Ox) / Scl);
 	for (i = 1; i <= num; i++) {

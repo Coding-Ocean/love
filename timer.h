@@ -9,3 +9,4 @@ void setFixedDeltaTime();
 float fixedDeltaTime();
 bool timer(int number, float interval);
 void resetTimer(int number);
+void waitFPS(void);
